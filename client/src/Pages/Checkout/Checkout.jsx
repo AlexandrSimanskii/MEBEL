@@ -4,18 +4,20 @@ import { useForm } from "react-hook-form";
 
 const Checkout = () => {
   const { user, addOrders, navigate } = useContext(CustomContext);
-  const [payCard, setPayCard] = useState(true);
-  const [payCash, setPayCash] = useState(false);
+
   const [popupTimer, setPopupTimer] = useState(10);
   const [popup, setPopup] = useState(false);
 
   const {
+    watch,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const pay = watch("pay");
   const submitForm = (data) => {
+    console.log(data);
     let order = {
       ...data,
       order: user.carts,
@@ -102,7 +104,7 @@ const Checkout = () => {
 
                   {user.carts?.map((item) => {
                     return (
-                      <tr key={item.id}>
+                      <tr key={item._id}>
                         <td>{item.title}</td>
                         <td>{item.count}</td>
                         <td>{item.price * item.count} руб</td>
@@ -125,31 +127,30 @@ const Checkout = () => {
               <div className="checkout__payment">
                 <p>Способы оплаты</p>
 
-                {/* <div className="checkout__payment-choice">
-                <label>
-                  Наличные{" "}
-                  <input
-                    name="pay"
-                    type="radio"
-                    checked
-                    onChange={() => {
-                      setPayCard(false);
-                      setPayCash(true);
-                    }}
-                  />
-                </label>
-                <label>
-                  Картой{" "}
-                  <input
-                    name="pay"
-                    type="radio"
-                    onChange={() => {
-                      setPayCard(true);
-                      setPayCash(false);
-                    }}
-                  />
-                </label>
-              </div> */}
+                <div className="checkout__payment-choice">
+                  <label className="checkout-label">
+                    Наличные
+                    <input
+                      {...register("pay")}
+                      name="pay"
+                      type="radio"
+                      value="Наличные"
+                      checked={pay === "Наличные"}
+                   
+                    />
+                  </label>
+                  <label className="checkout-label">
+                    Картой
+                    <input
+                      {...register("pay")}
+                      name="pay"
+                      type="radio"
+                      value="Банковская карта"
+                      checked={pay === "Банковская карта"}
+                  
+                    />
+                  </label>
+                </div>
 
                 <button>Разместить заказ</button>
               </div>

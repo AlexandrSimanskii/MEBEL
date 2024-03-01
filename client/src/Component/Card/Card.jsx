@@ -75,7 +75,7 @@ const Card = ({ item }) => {
           <div className="card__counter">
             {" "}
             <button onClick={() => addCardsCountMinus(item._id)}>-</button>
-            <span> {user.carts.find((el) => el.id === item._id).count}</span>
+            <span> {user.carts.find((el) => el._id === item._id).count}</span>
             <button onClick={() => addCardsCountPlus(item._id)}>+</button>
           </div>
         ) : (

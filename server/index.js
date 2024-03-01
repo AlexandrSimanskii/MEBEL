@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import productsRouter from "./routes/products.router.js";
 import authRouter from "./routes/auth.router.js";
+import userRouter from "./routes/users.router.js";
 
 dotenv.config();
 
@@ -22,12 +23,17 @@ app.listen(PORT, () => {
 });
 app.use(express.json());
 
-
-
-
-
 app.use("/api/products", productsRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
+
+
+
+
+
+
+
+
 
 
 app.use((err, req, res, next) => {

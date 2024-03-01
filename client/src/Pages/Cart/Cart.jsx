@@ -1,22 +1,20 @@
 import { Fragment, useContext } from "react";
 import { CustomContext } from "../../utils/Context/Context";
-import axios from "../../utils/Axios/Axios";
+import axios from "../../utils/Axios/axios";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { addCardsCountPlus, addCardsCountMinus, user, navigate, setUser } =
     useContext(CustomContext);
 
-  const deliteCard = (elem) => {
-    axios
-      .patch(`users/${user.id}`, {
-        carts: user.carts.filter((el) => el.id !== elem.id),
-      })
-      .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data));
-        setUser(res.data);
-      });
+  const deleteCard = async (elem) => {
+    const res = await axios.patch(`api/user/update/cart/${user._id}`, {
+      carts: { ...elem, count: 0 },
+    });
+
+    localStorage.setItem("user", JSON.stringify(res.data));
+    setUser(res.data);
   };
-  console.log(user.carts?.length.toString().at(-1));
 
   return (
     <div className="cart">
@@ -32,10 +30,13 @@ const Cart = () => {
               }  `}
             </div>
           </div>
+
           {user.carts?.map((item) => (
-            <Fragment key={item.id}>
+            <Fragment key={item._id}>
               <div className="cart__card">
-                <img src={item.image} alt="" />
+               
+                  <img src={item.image} alt="furnish" />
+               
 
                 <div className="cart__card-content">
                   <h4>{item.title}</h4>
@@ -48,12 +49,12 @@ const Cart = () => {
                     </div>
                   </dl>{" "}
                   <div className="cart__card-delete">
-                    <button onClick={() => addCardsCountMinus(item.id)}>
+                    <button onClick={() => addCardsCountMinus(item._id)}>
                       -
                     </button>
 
                     <span>{item.count}</span>
-                    <button onClick={() => addCardsCountPlus(item.id)}>
+                    <button onClick={() => addCardsCountPlus(item._id)}>
                       +
                     </button>
                   </div>
@@ -62,11 +63,11 @@ const Cart = () => {
                 <h5>Сумма {item.price * item.count}</h5>
                 <div
                   onClick={() => {
-                    deliteCard(item);
+                    deleteCard(item);
                   }}
                   className="cart__card-closed"
                 >
-                  <img src="/images/image/cross.svg" alt="" />
+                  <img src="/images/image/cross.svg" alt="cross" />
                 </div>
               </div>
             </Fragment>
