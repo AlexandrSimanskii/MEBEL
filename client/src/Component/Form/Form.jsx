@@ -15,7 +15,7 @@ const Form = () => {
     watch,
   } = useForm({ mode: "onBlur" });
 
-  const { user, registerUser, loginUser } = useContext(CustomContext);
+  const { user, registerUser, loginUser, authError } = useContext(CustomContext);
 
   const [visiblePwd, setVisiblePwd] = useState(false);
   const [visiblePassword, setVisiblePassword] = useState(false);
@@ -26,18 +26,17 @@ const Form = () => {
   const submitForm = (data) => {
     let { confirmPwd, ...username } = data;
 
-
-
     if (pathname === "/login") {
       loginUser(username);
     } else {
       registerUser(username);
     }
   };
-
+console.log(authError);
   return (
     <div className="register">
       <div className="register__left">
+        {authError && <p className="register-error">{authError}</p>}
         <h2>{pathname === "/register" ? "Регистрация" : "Вход"}</h2>
         {pathname === "/login" && (
           <p>

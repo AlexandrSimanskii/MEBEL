@@ -1,12 +1,16 @@
 // import React from 'react';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CustomContext } from "../../utils/Context/Context";
 const About = () => {
-const{user}=useContext(CustomContext)
-
-
-
+  const { user } = useContext(CustomContext);
+  const [message, setMessage] = useState("");
+  const handlerOnChange = (e) => {
+    e.preventDefault()
+    console.log(e.target.value);
+    setMessage(e.target.value);
+  };
+console.log(user.email);
   return (
     <section className="about">
       <div className="container">
@@ -18,17 +22,26 @@ const{user}=useContext(CustomContext)
                 Ваше имя <input type="text" defaultValue={user.username} />
               </label>
               <label>
-                Ваш e-mail <input type="text" defaultValue={user?.email}/>
+                Ваш e-mail <input type="text" defaultValue={user?.email} />
               </label>
               <label>
-                Сообщение <textarea />
+                Сообщение{" "}
+                <textarea value={message} onChange={handlerOnChange} />
               </label>
-              <button>Отправить</button>
+
+              <Link
+                to={`mailto:simabmv@mail.ru?body= Сообщение`}
+              >
+                <button>Отправить</button>
+              </Link>
+
             </form>
             <ul className="about__list">
-              <li className="about__list-number" ><a href="tel:89648999119">8 (964) 899 91 19</a></li>
-              
-              <Link to={"https://www.mail.ru"}  target="_blank">
+              <li className="about__list-number">
+                <a href="tel:89648999119">8 (964) 899 91 19</a>
+              </li>
+
+              <Link to={"https://www.mail.ru"} target="_blank">
                 <li className="about__list-mail">mebel_Loft_anapa@mail.ru</li>
               </Link>
               <Link to={"https://www.instagram.com/"} target="_blank">

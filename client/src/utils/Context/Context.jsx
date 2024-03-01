@@ -17,6 +17,7 @@ const Context = (props) => {
   const [category, setCategory] = useState("");
   const [activeItem, setActiveItem] = useState(null);
   const { pathname } = useLocation();
+  const [authError, setAuthError] = useState("");
 
   //Получить все продукты
 
@@ -43,26 +44,30 @@ const Context = (props) => {
   }, []);
 
   //Регистрация
-  const registerUser = (user) => {
-    axios
-      .post("api/auth/signup", user)
-      .then((res) => {
-        setUser(res.data.user);
-
-        navigate("/");
-        localStorage.setItem("user", JSON.stringify(user));
-      })
-      .catch((error) => console.log(error));
-  };
-
-  //Войти в профиль
-  const loginUser = (user) => {
-    axios.post("/api/auth/signin", user).then((res) => {
-      console.log(res);
+  const registerUser = async (user) => {
+    try {
+      const res = await axios.post("/api/auth/signup", user);
       setUser(res.data);
       navigate("/");
       localStorage.setItem("user", JSON.stringify(res.data));
-    });
+    } catch (error) {
+      setAuthError(error.response.data.message);
+      console.error(error.response.data.message);
+    }
+  };
+
+  //Войти в профиль
+  const loginUser = async (user) => {
+    try {
+      const res = await axios.post("/api/auth/signin", user);
+
+      setUser(res.data);
+      navigate("/");
+      localStorage.setItem("user", JSON.stringify(res.data));
+    } catch (error) {
+      setAuthError(error.response.data.message);
+      console.error(error.response.data.message);
+    }
   };
 
   // Выйти из профиля
@@ -74,7 +79,7 @@ const Context = (props) => {
   // Получить продукты с наибольшей скидкой
   const getHitSale = () => {
     axios
-      .get("api/products/get?sort=sale")
+      .get("api/products/get?sort=sale&limit=8")
       .then((res) => setHitSale(res.data))
       .catch((error) => console.log(error));
   };
@@ -109,7 +114,7 @@ const Context = (props) => {
   // Added in the cart
   const addCarts = (product) => {
     axios
-      .patch(`users/${user.id}`, {
+      .patch(`api/users/${user._id}`, {
         carts: [...user.carts, { ...product, count: 1, data: getToday() }],
       })
       .then((res) => {
@@ -213,6 +218,7 @@ const Context = (props) => {
     setPages,
     activeItem,
     setActiveItem,
+    authError
   };
 
   return (

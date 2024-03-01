@@ -7,7 +7,8 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   username: { type: String, required: true },
   number: { type: String, unique: true },
-  orders: { type: Array },
+  orders: { type: Array, default: [] },
+  carts: { type: Array, default: [] },
   secondName: { type: String },
 
   sity: { type: String },

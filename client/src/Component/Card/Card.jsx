@@ -82,8 +82,9 @@ const Card = ({ item }) => {
           <button
             type="button"
             onClick={() => {
-              if ("id" in user) {
+              if ("_id" in user) {
                 addCarts(item);
+                console.log(item);
               } else {
                 navigate("/login");
               }
