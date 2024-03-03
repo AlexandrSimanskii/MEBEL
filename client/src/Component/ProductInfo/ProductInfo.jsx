@@ -12,15 +12,14 @@ const ProductInfo = ({ product }) => {
   } = useContext(CustomContext);
 
   const [btnPayVisible, setBtnPayVisible] = useState(false);
-  const [selectedPSC, setSelectedPSC] = useState(1);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setBtnPayVisible(!user.carts?.some((item) => item.id === product.id));
+    setBtnPayVisible(!user.carts?.some((item) => item._id === product._id));
+    // setCount(user.carts.find((item) => item._id === product._id).count);
   }, []);
 
-
-
-
+  // console.log(user.carts.find((item) => item._id === product._id));
   return (
     <div className="purches__inform">
       <h3>{product.title}</h3>
@@ -33,7 +32,6 @@ const ProductInfo = ({ product }) => {
             onClick={() => {
               addCarts(product);
               setBtnPayVisible(false);
-              setSelectedPSC(1);
             }}
           >
             В корзину
@@ -43,21 +41,17 @@ const ProductInfo = ({ product }) => {
             <button
               type="button"
               onClick={() => {
-                setSelectedPSC((prev) => {
-                  return prev > 1 ? prev - 1 : setBtnPayVisible(true);
-                });
-                addCardsCountMinus(product.id);
+                addCardsCountMinus(product._id);
               }}
             >
               -
             </button>
-            <p>{selectedPSC}</p>
+            <p>{user.carts.find((item) => item._id === product._id)?.count || 0} </p>
 
             <button
               type="button"
               onClick={() => {
-                setSelectedPSC((prev) => Number(prev) + 1);
-                addCardsCountPlus(product.id);
+                addCardsCountPlus(product._id);
               }}
             >
               +

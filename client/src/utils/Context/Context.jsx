@@ -1,4 +1,4 @@
-import axios from "../../utils/Axios/axios";
+import axios from "../../utils/Axios/axios.js";
 import { createContext, useEffect } from "react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";

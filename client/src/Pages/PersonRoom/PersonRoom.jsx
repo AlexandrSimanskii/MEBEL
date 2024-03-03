@@ -17,8 +17,6 @@ const PersonRoom = () => {
     setOrders(getAllOrders());
   }, [user]);
 
-
- 
   return (
     <section className="room">
       <div className="container">
@@ -28,8 +26,13 @@ const PersonRoom = () => {
             <li className="room__bonus-list">
               <p>
                 У вас {""}
-               { user.id?orders && Math.round((orders.reduce((acc,el)=>acc+el.price,0))/100*3):0}
-               {""} бонусных баллов
+                {user.id
+                  ? orders &&
+                    Math.round(
+                      (orders.reduce((acc, el) => acc + el.price, 0) / 100) * 3
+                    )
+                  : 0}
+                {""} бонусных баллов
               </p>
               <a>Правила бонусной программы</a>
             </li>
@@ -44,34 +47,38 @@ const PersonRoom = () => {
             </li>
           </ul>
           <div className="room__bottom">
-          
-{user.orders?.length && <table>
-              <caption>Купленные товары</caption>
-              <thead>
-                <tr>
-                  <td>Товар</td>
-                  <td>Цена</td>
-                  <td>Количество</td>
-                  <td>Дата</td>
-                </tr>
-              </thead>
-              <tbody>
-                {orders?.map((item) => {
-                  return (
-                    <Fragment key={item.id}>
-                      <tr>
-                        <td>
-                          <img src={item.image} alt="" />
-                        </td>
+            {user.orders?.length && (
+              <table>
+                <caption>Купленные товары</caption>
+                <thead>
+                  <tr>
+                    <td>Товар</td>
+                    <td>Цена</td>
+                    <td>Количество</td>
+                    <td>Дата</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders?.map((item) => {
+                    return (
+                      <Fragment key={item.id}>
+                        <tr>
+                          <td>
+                            <img
+                              className="room__bottom-img"
+                              src={item.image}
+                              alt=""
+                            />
+                          </td>
 
-                        <td>{item.price} руб</td>
-                        <td>{item.count} </td>
-                        <td>{item.data}</td>
-                      </tr>
-                    </Fragment>
-                  );
-                })}
-                {/* <tr>
+                          <td>{item.price} руб</td>
+                          <td>{item.count} </td>
+                          <td>{item.data}</td>
+                        </tr>
+                      </Fragment>
+                    );
+                  })}
+                  {/* <tr>
                   <td>
                     <img src={orders && orders[0]?.image} alt="" />
                   </td>
@@ -79,10 +86,9 @@ const PersonRoom = () => {
                   <td>{orders && orders[0]?.count} </td>
                   <td>{user?.orders?.[0].date}</td>
                 </tr> */}
-              </tbody>
-            </table>}
-
-            
+                </tbody>
+              </table>
+            )}
           </div>
           {pop ? (
             <div className="popup">
