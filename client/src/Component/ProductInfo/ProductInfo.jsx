@@ -12,14 +12,16 @@ const ProductInfo = ({ product }) => {
   } = useContext(CustomContext);
 
   const [btnPayVisible, setBtnPayVisible] = useState(false);
-  const [count, setCount] = useState(0);
+  const [selectedPSC, setSelectedPSC] = useState(1);
 
-  useEffect(() => {
-    setBtnPayVisible(!user.carts?.some((item) => item._id === product._id));
-    // setCount(user.carts.find((item) => item._id === product._id).count);
-  }, []);
+ 
+  // const { register, handleSubmit } = useForm();
+  // const onSubmit = (data) => console.log(data);
 
-  // console.log(user.carts.find((item) => item._id === product._id));
+
+useEffect(()=>{setBtnPayVisible(!user.carts?.some((item) => item.id === product.id))},[])
+  
+
   return (
     <div className="purches__inform">
       <h3>{product.title}</h3>
@@ -31,7 +33,8 @@ const ProductInfo = ({ product }) => {
             form="chengePSC"
             onClick={() => {
               addCarts(product);
-              setBtnPayVisible(false);
+              setBtnPayVisible(false)
+              setSelectedPSC(1)
             }}
           >
             В корзину
@@ -41,13 +44,27 @@ const ProductInfo = ({ product }) => {
             <button
               type="button"
               onClick={() => {
-                addCardsCountMinus(product._id);
+                setSelectedPSC((prev) => {
+             
+                  return prev > 1 ? prev - 1 : setBtnPayVisible(true);
+                  
+                });
+                addCardsCountMinus(product.id);
               }}
             >
               -
             </button>
-            <p>{user.carts.find((item) => item._id === product._id)?.count || 0} </p>
-
+            <p>{selectedPSC}</p>
+            {/* <input
+              placeholder="0"
+              type="number"
+              value={selectedPSC <= 0 ? "" : selectedPSC} // Если selectedPSC равен 0, то отображаем пустую строку
+              min={-Infinity}
+              onChange={(e) => {
+                const inputValue = Number(e.target.value);
+                setSelectedPSC(isNaN(inputValue) ? 0 : inputValue); // Если введено не число, то устанавливаем 0
+              }}
+            /> */}
             <button
               type="button"
               onClick={() => {

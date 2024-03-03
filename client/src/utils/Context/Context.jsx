@@ -115,8 +115,8 @@ const Context = (props) => {
   const addCarts = (product) => {
     console.log(user);
     axios
-      .patch(`api/user/update/cart/${user._id}`, {
-        carts: { ...product, count: 1, data: getToday() },
+      .patch(`api/users/${user._id}`, {
+        carts: [...user.carts, { ...product, count: 1, data: getToday() }],
       })
       .then((res) => {
         setUser(res.data);
@@ -127,39 +127,48 @@ const Context = (props) => {
       });
   };
 
-  const addCardsCountPlus = async (id) => {
-    const newCarts = user.carts.find((item) => item._id === id);
-
-    newCarts.count++;
-    try {
-      const res = await axios.patch(`api/user/update/cart/${user._id}`, {
-        carts: newCarts,
+  const addCardsCountPlus = (id) => {
+    axios
+      .patch(`users/${user.id}`, {
+        carts: user.carts.map((item) => {
+          if (item.id === id) {
+            return { ...item, count: item.count + 1 };
+          } else {
+            return item;
+          }
+        }),
+      })
+      .then((res) => {
+        console.log(res.data);
+        setUser(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
       });
-
-      console.log(res.data);
-      setUser(res.data);
-      localStorage.setItem("user", JSON.stringify(res.data));
-    } catch (error) {
-      console.error("An error occurred:", error);
-    }
   };
 
-  const addCardsCountMinus = async (id) => {
-    const newCarts = user.carts.find((item) => item._id === id);
-    if (newCarts.count >= 0) {
-      newCarts.count--;
-    }
-
-    try {
-      const res = await axios.patch(`api/user/update/cart/${user._id}`, {
-        carts: newCarts,
+  const addCardsCountMinus = (id) => {
+    axios
+      .patch(`users/${user.id}`, {
+        carts:
+          user.carts.find((item) => item.id === id).count > 1
+            ? user.carts.map((item) => {
+                if (item.id === id) {
+                  return { ...item, count: item.count - 1 };
+                }
+                return item;
+              })
+            : user.carts.filter((item) => item.id !== id),
+      })
+      .then((res) => {
+        console.log(res.data);
+        setUser(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
       });
-
-      setUser(res.data);
-      localStorage.setItem("user", JSON.stringify(res.data));
-    } catch (error) {
-      console.error("An error occurred:", error);
-    }
   };
 
   const addOrders = async (order, setPopup, redirect) => {

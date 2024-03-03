@@ -7,13 +7,15 @@ const Cart = () => {
   const { addCardsCountPlus, addCardsCountMinus, user, navigate, setUser } =
     useContext(CustomContext);
 
-  const deleteCard = async (elem) => {
-    const res = await axios.patch(`api/user/update/cart/${user._id}`, {
-      carts: { ...elem, count: 0 },
-    });
-
-    localStorage.setItem("user", JSON.stringify(res.data));
-    setUser(res.data);
+  const deliteCard = (elem) => {
+    axios
+      .patch(`users/${user.id}`, {
+        carts: user.carts.filter((el) => el.id !== elem.id),
+      })
+      .then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        setUser(res.data);
+      });
   };
 
   return (
@@ -34,9 +36,7 @@ const Cart = () => {
           {user.carts?.map((item) => (
             <Fragment key={item._id}>
               <div className="cart__card">
-               
-                  <img src={item.image} alt="furnish" />
-               
+                <img src={item.image} alt="furnish" />
 
                 <div className="cart__card-content">
                   <h4>{item.title}</h4>
