@@ -2,7 +2,7 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { CustomContext } from "../../utils/Context/Context";
 import NavList from "../NavList/NavList";
-import axios from "../../utils/Axios/axios";
+import axios from "../../utils/Axios/Axios";
 
 const Header = () => {
   const {

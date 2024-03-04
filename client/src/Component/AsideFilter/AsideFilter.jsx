@@ -4,7 +4,7 @@ import RangeInput from "./RangeInput.jsx";
 import { Button } from "@mui/material";
 import { useContext, useRef } from "react";
 import { CustomContext } from "../../utils/Context/Context";
-import axios from "../../utils/Axios/axios";
+import axios from "../../utils/Axios/Axios";
 
 const AsideFilter = ({
   sort,

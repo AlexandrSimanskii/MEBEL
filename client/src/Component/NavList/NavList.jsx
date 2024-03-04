@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { CustomContext } from "../../utils/Context/Context";
 import { useLocation } from "react-router-dom";
-import axios from "../../utils/Axios/axios";
+import axios from "../../utils/Axios/Axios";
 
 const NavList = () => {
   const {
