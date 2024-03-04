@@ -4,7 +4,7 @@ import ProductInfo from "../../Component/ProductInfo/ProductInfo";
 import ProductSlider from "../../Component/ProductSlider/ProductSlider";
 
 import { useEffect, useState } from "react";
-import axios from "../../utils/Axios/axios";
+import axios from "../../utils/Axios/Axios";
 
 const CardProduct = () => {
   const params = useParams();

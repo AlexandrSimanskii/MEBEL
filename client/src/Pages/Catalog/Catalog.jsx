@@ -1,7 +1,7 @@
 import { Fragment, useState, useContext, useEffect, useRef } from "react";
 import AsideFilter from "../../Component/AsideFilter/AsideFilter";
 import { CustomContext } from "../../utils/Context/Context";
-import axios from "../../utils/Axios/axios";
+import axios from "../../utils/Axios/Axios";
 import Card from "../../Component/Card/Card";
 
 const Catalog = () => {

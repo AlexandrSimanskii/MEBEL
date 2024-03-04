@@ -1,6 +1,6 @@
 import { Fragment, useContext } from "react";
 import { CustomContext } from "../../utils/Context/Context";
-import axios from "../../utils/Axios/axios";
+import axios from "../../utils/Axios/Axios";
 import { Link } from "react-router-dom";
 
 const Cart = () => {

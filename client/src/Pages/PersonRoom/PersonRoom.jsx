@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, Fragment } from "react";
 import { CustomContext } from "../../utils/Context/Context";
 import { useForm } from "react-hook-form";
-import axios from "../../utils/Axios/axios";
+import axios from "../../utils/Axios/Axios";
 
 const PersonRoom = () => {
   const { user, setUser } = useContext(CustomContext);
