@@ -11,11 +11,11 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+    
     watch,
   } = useForm({ mode: "onBlur" });
 
-  const { user, registerUser, loginUser, authError } = useContext(CustomContext);
+  const {  registerUser, loginUser, authError } = useContext(CustomContext);
 
   const [visiblePwd, setVisiblePwd] = useState(false);
   const [visiblePassword, setVisiblePassword] = useState(false);

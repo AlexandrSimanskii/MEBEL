@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { debounce } from "@mui/material";
-import { useEffect } from "react";
+
 
 const RangeInput = ({ slider, setSlider }) => {
   const handleChange = (event, newValue) => {

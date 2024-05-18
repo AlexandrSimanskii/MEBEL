@@ -7,9 +7,9 @@ const Cart = () => {
   const { addCardsCountPlus, addCardsCountMinus, user, navigate, setUser } =
     useContext(CustomContext);
 
-  const deliteCard = (elem) => {
+  const deleteCard = (elem) => {
     axios
-      .patch(`users/${user.id}`, {
+      .patch(`app/users/${user.id}`, {
         carts: user.carts.filter((el) => el.id !== elem.id),
       })
       .then((res) => {

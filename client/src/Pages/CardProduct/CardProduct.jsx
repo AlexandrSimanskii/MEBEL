@@ -14,7 +14,7 @@ const CardProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`api/products/get/${params.id}`);
+        const res = await axios.get(`app/products/get/${params.id}`);
         setProduct({...res.data});
       } catch {
         console.log("erorr fetchProduct");

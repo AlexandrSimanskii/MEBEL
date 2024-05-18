@@ -35,8 +35,8 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.use("/api/products", productsRouter);
-app.use("/api/auth", authRouter);
+app.use("/app/products", productsRouter);
+app.use("/app/auth", authRouter);
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: "Not Found" });

@@ -6,6 +6,7 @@ import axios from "../../utils/Axios/Axios";
 
 const Header = () => {
   const {
+    
     logOutUser,
     user,
     navigate,
@@ -13,9 +14,7 @@ const Header = () => {
     setSearch,
     location,
     setProducts,
-    setCategory,
-    hitSale,
-    setPages,
+   
   } = useContext(CustomContext);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +29,7 @@ const Header = () => {
     location.pathname !== "/catalog" && navigate("/catalog"),
       setSearch(e.target.value);
     const res = await axios.get(
-      `api/products/get?searchTerm=${e.target.value}`
+      `app/products/get?searchTerm=${e.target.value}`
     );
     setProducts(res.data);
   };
@@ -129,6 +128,7 @@ const Header = () => {
               >
                 <img src="/images/icons/wishlist-icon.svg" alt="heart" />
               </div>
+
             </Link>
             <div
               className={`menu-img ${location.pathname == "/cart" && "active"}`}

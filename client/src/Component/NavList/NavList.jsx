@@ -24,7 +24,7 @@ const NavList = () => {
       setCategory(newCategory === "Акция" ? "" : newCategory);
 
       const res = await axios.get(
-        `api/products/get?category=${
+        `app/products/get?category=${
           newCategory === "Акция" ? "" : newCategory
         }&limit=6`
       );
