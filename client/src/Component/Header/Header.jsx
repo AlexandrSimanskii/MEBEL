@@ -29,7 +29,7 @@ const Header = () => {
     location.pathname !== "/catalog" && navigate("/catalog"),
       setSearch(e.target.value);
     const res = await axios.get(
-      `app/products/get?searchTerm=${e.target.value}`
+      `api/productsDB/get?searchTerm=${e.target.value}`
     );
     setProducts(res.data);
   };
@@ -67,7 +67,7 @@ const Header = () => {
             <div className="header__top-right">
               <ul className="header__list">
                 <li>
-                  <img src="/images/icons/phone.svg" alt="" />
+                  <img src="images/icons/phone.svg" alt="" />
                   <a className="header__list-phone" href="tel:89648999119">
                     8 (964) 89 99 119
                   </a>
@@ -76,7 +76,7 @@ const Header = () => {
                   <Link to={"/about"}>
                     <img
                       className="img"
-                      src="/images/icons/delivery-icon.svg"
+                      src="images/icons/delivery-icon.svg"
                       alt=""
                     />
                     <p className="header__list-deliver" href="#">
@@ -96,14 +96,14 @@ const Header = () => {
             <img
               onClick={() => setIsOpen(true)}
               ref={menuBtnRef}
-              src="/images/icons/menu-icon.svg"
+              src="images/icons/menu-icon.svg"
               alt="menu"
             />
           </button>
           <Link to={"/"}>
             <img
               className="header__main_logo"
-              src="/images/image/LOGO.svg"
+              src="images/image/LOGO.svg"
               alt="logo"
             />
           </Link>
@@ -126,7 +126,7 @@ const Header = () => {
                   location.pathname == "/favorites" && "active"
                 }`}
               >
-                <img src="/images/icons/wishlist-icon.svg" alt="heart" />
+                <img src="images/icons/wishlist-icon.svg" alt="heart" />
               </div>
 
             </Link>
@@ -134,7 +134,7 @@ const Header = () => {
               className={`menu-img ${location.pathname == "/cart" && "active"}`}
             >
               <Link to={user.email?.length ? "/cart" : "/login"}>
-                <img src="/images/icons/bag.svg" alt="bag" />
+                <img src="images/icons/bag.svg" alt="bag" />
               </Link>
             </div>
             <div className="menu-img">

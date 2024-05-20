@@ -28,16 +28,16 @@ const ProductSlider = ({product}) => {
           <img src={product.image} alt="chair" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="../../../public/images/image/chair3.png" alt="chair" />
+          <img src="images/image/chair3.png" alt="chair" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="../../../public/images/image/chair4.png" alt="chair" />
+          <img src="images/image/chair4.png" alt="chair" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="../../../public/images/image/chair5.png" alt="chair" />
+          <img src="images/image/chair5.png" alt="chair" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="../../../public/images/image/chair6.png" alt="chair" />
+          <img src="images/image/chair6.png" alt="chair" />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -62,22 +62,22 @@ const ProductSlider = ({product}) => {
         </SwiperSlide>
         <SwiperSlide>
           <div className="a">
-            <img src="/images/image/chair3.png" alt="chair" />
+            <img src="images/image/chair3.png" alt="chair" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="a">
-            <img src="/images/image/chair4.png" alt="chair" />
+            <img src="images/image/chair4.png" alt="chair" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="a">
-            <img src="/images/image/chair5.png" alt="chair" />
+            <img src="images/image/chair5.png" alt="chair" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="a">
-            <img src="/images/image/chair6.png" alt="chair" />
+            <img src="images/image/chair6.png" alt="chair" />
           </div>
         </SwiperSlide>
       </Swiper>

@@ -47,7 +47,7 @@ const AsideFilter = ({
     let queryParamsFromTo = `price_gte=${slider[0]}&price_lte=${slider[1]}`;
 
     const res = await axios.get(
-      `/app/products/get?${qweryParamsApi}${queryParamsFromTo}`
+      `/api/productsDB/get?${qweryParamsApi}${queryParamsFromTo}`
     );
     setPages(1);
     setProducts(res.data);

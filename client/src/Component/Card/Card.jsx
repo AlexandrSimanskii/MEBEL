@@ -22,7 +22,7 @@ const Card = ({ item }) => {
         <div className="card__sale">
           {item.sale > 0 ? (
             <>
-              <img src="/images/icons/sale-red.svg" alt="sale" />
+              <img src="images/icons/sale-red.svg" alt="sale" />
               <p>{item.sale} %</p>
             </>
           ) : (
@@ -34,8 +34,8 @@ const Card = ({ item }) => {
           className="card__favorite"
           src={
             favorites.some((el) => el._id === item._id)
-              ? "/images/icons/HeartRed.svg"
-              : "/images/icons/favorite.svg"
+              ? "images/icons/HeartRed.svg"
+              : "images/icons/favorite.svg"
           }
           alt=""
         />

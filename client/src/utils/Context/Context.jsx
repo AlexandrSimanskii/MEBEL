@@ -23,7 +23,7 @@ const Context = (props) => {
 
   const getAllProducts = async () => {
     const products = await fetch(
-      "http://localhost:3004/app/products/get?limit=6"
+      "http://localhost:3004/api/productsDB/get?limit=6"
     );
     let res = await products.json();
     setProducts(res);
@@ -46,7 +46,7 @@ const Context = (props) => {
   //Регистрация
   const registerUser = async (user) => {
     try {
-      const res = await axios.post("/app/auth/signup", user);
+      const res = await axios.post("/api/authDB/signup", user);
       setUser(res.data);
       navigate("/");
       localStorage.setItem("user", JSON.stringify(res.data));
@@ -59,7 +59,7 @@ const Context = (props) => {
   //Войти в профиль
   const loginUser = async (user) => {
     try {
-      const res = await axios.post("/app/auth/signin", user);
+      const res = await axios.post("/api/authDB/signin", user);
 
       setUser(res.data);
       navigate("/");
@@ -79,7 +79,7 @@ const Context = (props) => {
   // Получить продукты с наибольшей скидкой
   const getHitSale = () => {
     axios
-      .get("app/products/get?sort=sale&limit=8")
+      .get("api/productsDB/get?sort=sale&limit=8")
       .then((res) => setHitSale(res.data))
       .catch((error) => console.log(error));
   };
@@ -115,7 +115,7 @@ const Context = (props) => {
   const addCarts = (product) => {
     console.log(user);
     axios
-      .patch(`app/users/${user._id}`, {
+      .patch(`api/usersDB/${user._id}`, {
         carts: [...user.carts, { ...product, count: 1, data: getToday() }],
       })
       .then((res) => {
@@ -129,7 +129,7 @@ const Context = (props) => {
 
   const addCardsCountPlus = (id) => {
     axios
-      .patch(`app/users/${user.id}`, {
+      .patch(`api/usersDB/${user.id}`, {
         carts: user.carts.map((item) => {
           if (item.id === id) {
             return { ...item, count: item.count + 1 };
@@ -150,7 +150,7 @@ const Context = (props) => {
 
   const addCardsCountMinus = (id) => {
     axios
-      .patch(`app/users/${user.id}`, {
+      .patch(`api/usersDB/${user.id}`, {
         carts:
           user.carts.find((item) => item.id === id).count > 1
             ? user.carts.map((item) => {
@@ -173,7 +173,7 @@ const Context = (props) => {
 
   const addOrders = async (order, setPopup, redirect) => {
     try {
-      const res = await axios.patch(`api/user/update/order/${user._id}`, {
+      const res = await axios.patch(`api/userDB/update/order/${user._id}`, {
         orders: [...user.orders, order],
         carts: [],
       });

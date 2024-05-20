@@ -1,8 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import productsRouter from "./routes/products.router.js";
-import authRouter from "./routes/auth.router.js";
+import productsRouterDB from "./routes/productsDB.router.js";
+import authRouterDB from "./routes/authDB.router.js";
 
 dotenv.config();
 
@@ -35,8 +35,8 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.use("/app/products", productsRouter);
-app.use("/app/auth", authRouter);
+app.use("/api/productsDB", productsRouterDB);
+app.use("/app/authDB", authRouterDB);
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: "Not Found" });

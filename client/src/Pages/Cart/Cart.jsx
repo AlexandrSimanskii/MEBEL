@@ -9,7 +9,7 @@ const Cart = () => {
 
   const deleteCard = (elem) => {
     axios
-      .patch(`app/users/${user.id}`, {
+      .patch(`api/usersDB/${user.id}`, {
         carts: user.carts.filter((el) => el.id !== elem.id),
       })
       .then((res) => {
@@ -67,7 +67,7 @@ const Cart = () => {
                   }}
                   className="cart__card-closed"
                 >
-                  <img src="/images/image/cross.svg" alt="cross" />
+                  <img src="images/image/cross.svg" alt="cross" />
                 </div>
               </div>
             </Fragment>

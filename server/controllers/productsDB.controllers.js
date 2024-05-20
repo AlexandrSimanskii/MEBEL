@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import Products from "../models/product.models.js";
+import Products from "../models/productDB.models.js";
 
-export const getProduct = async (req, res) => {
+export const getProductDB = async (req, res) => {
   console.log(req.params);
   try {
     const product = await Products.findById(req.params.id);
@@ -11,7 +11,7 @@ export const getProduct = async (req, res) => {
   }
 };
 
-export const getProducts = async (req, res) => {
+export const getProductsDB = async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 6;
     const pages = parseInt(req.query.pages - 1) * limit || 0;
