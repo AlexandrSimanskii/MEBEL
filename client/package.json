@@ -7,8 +7,7 @@
   "scripts": {
     "start": "vite --port 3000",
     "server": "node ../index.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+  
     "build": "vite build ",
     "preview": "vite preview"
   },
@@ -42,18 +41,9 @@
     "gh-pages": "^6.1.1",
     "vite": "^4.3.9",
     "vite-plugin-gh-pages": "^0.4.1"
-  },
-  "main": "vite.config.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AlexandrSimanskii/MebelFront.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AlexandrSimanskii/MebelFront/issues"
-  },
-  "proxy": "http://localhost:3004",
-  "description": ""
+  }
+ 
+  
+ 
+  
 }
