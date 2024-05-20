@@ -81,8 +81,8 @@ useEffect(()=>{setBtnPayVisible(!user.carts?.some((item) => item.id === product.
             onClick={() => favoritesHandler(product)}
             src={
               favorites.some((el) => el.id === product.id)
-                ? "images/icons/HeartRed.svg"
-                : "images/icons/favorite.svg"
+                ? "/images/icons/HeartRed.svg"
+                : "/images/icons/favorite.svg"
             }
             alt=""
           />

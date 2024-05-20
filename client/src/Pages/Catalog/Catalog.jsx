@@ -5,15 +5,8 @@ import axios from "../../utils/Axios/Axios";
 import Card from "../../Component/Card/Card";
 
 const Catalog = () => {
-  const {
-    
-    products,
-    setProducts,
-    category,
-    setCategory,
-    pages,
-    setPages,
-  } = useContext(CustomContext);
+  const { products, setProducts, category, setCategory, pages, setPages } =
+    useContext(CustomContext);
   const [countPages, setCountPages] = useState(0);
   const [sort, setSort] = useState("");
   const [slider, setSlider] = useState([0, 300000]);
@@ -30,35 +23,29 @@ const Catalog = () => {
     setSlider([allPrices[0], allPrices.at(-1)]);
   };
 
- 
+  // const fetchAllProducts = async () => {
+  //   try {
+  //     const getAllProducts = await axios.get(
+  //       `api/products/get?category=${category}&pages=${pages}&limit=6`
+  //     );
+  //     const data = await getAllProducts.data.products;
+  //     const totalPages = getAllProducts.data.totalPages;
+  //     getAllProducts.length && getMinMaxPrice(getAllProducts);
 
-  useEffect(() => {
-    const fetchAllProducts = async () => {
-      try {
-        const getAllProducts = await axios.get(
-          `api/products/get?category=${category}&pages=${pages}&limit=6`
-        );
-        const data = await getAllProducts.data.products;
-        const totalPages = getAllProducts.data.totalPages;
-        getAllProducts.length && getMinMaxPrice(getAllProducts);
+  //     setProducts(data);
+  //     setCountPages(totalPages);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-        setProducts(data);
-        setCountPages(totalPages);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
- 
-
-    fetchAllProducts();
-  }, [pages]);
+  // useEffect(() => {
+  //   fetchAllProducts();
+  // }, [pages]);
 
   useEffect(() => {
     products.length && getMinMaxPrice(products);
   }, [products]);
-
- 
 
   return (
     <main>

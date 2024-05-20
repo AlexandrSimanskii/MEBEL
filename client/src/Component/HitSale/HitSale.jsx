@@ -6,13 +6,14 @@ import Card from "../Card/Card";
 const HitSale = () => {
 
   const { hitSale, getHitSale } = useContext(CustomContext);
+  
   useEffect(() => {
     getHitSale();
   }, []);
 
 
 
-
+console.log(hitSale);
 
   return (
     <>

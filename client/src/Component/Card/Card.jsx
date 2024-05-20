@@ -1,8 +1,6 @@
-/* eslint react/prop-types: 0 */
-
 import { Link, useNavigate } from "react-router-dom";
 import { CustomContext } from "../../utils/Context/Context";
-import { useContext, } from "react";
+import { useContext } from "react";
 
 const Card = ({ item }) => {
   const {
@@ -15,14 +13,13 @@ const Card = ({ item }) => {
   } = useContext(CustomContext);
   const navigate = useNavigate();
 
- 
   return (
     <div className="card">
       <div className="card__top">
         <div className="card__sale">
           {item.sale > 0 ? (
             <>
-              <img src="images/icons/sale-red.svg" alt="sale" />
+              <img src="/images/icons/sale-red.svg" alt="sale" />
               <p>{item.sale} %</p>
             </>
           ) : (
@@ -34,16 +31,17 @@ const Card = ({ item }) => {
           className="card__favorite"
           src={
             favorites.some((el) => el._id === item._id)
-              ? "images/icons/HeartRed.svg"
-              : "images/icons/favorite.svg"
+              ? "/images/icons/HeartRed.svg"
+              : "/images/icons/favorite.svg"
           }
           alt=""
         />
       </div>
+
       <div className="card__main">
         <div className="main-img">
           <Link to={`/product/${item._id}`}>
-            <img src={item.image} alt="category" />
+            <img src={`/${item.image}`} alt="category" />
           </Link>
         </div>
         <h3 className="main-title">{item.title}</h3>

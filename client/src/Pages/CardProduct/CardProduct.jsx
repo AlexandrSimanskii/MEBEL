@@ -11,22 +11,25 @@ const CardProduct = () => {
 
   const [product, setProduct] = useState({});
 
+  const fetchProduct = async () => {
+    try {
+      const res = await axios.get(`api/productsDB/get/${params.id}`);
+      setProduct({ ...res.data });
+    } catch {
+      console.log("erorr fetchProduct");
+    }
+  };
+
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const res = await axios.get(`app/products/get/${params.id}`);
-        setProduct({...res.data});
-      } catch {
-        console.log("erorr fetchProduct");
-      }
-    };
     fetchProduct();
   }, [params.id]);
 
-  
+  console.log(product);
   if ("_id" in product) {
     return (
       <>
+        {" "}
+      
         <div className="cardProduct">
           <div className="container">
             <div className="cardProduct__inner">

@@ -1,6 +1,4 @@
-
-
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
@@ -10,8 +8,10 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-const ProductSlider = ({product}) => {
+const ProductSlider = ({ product }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  useEffect(() => {}, [product]);
 
   return (
     <div className="product__slider">
@@ -21,23 +21,23 @@ const ProductSlider = ({product}) => {
         spaceBetween={10}
         navigation={false}
         thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation,Thumbs]}
+        modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src={product.image} alt="chair" />
+          <img src={`/${product.image}`} alt="chair" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="images/image/chair3.png" alt="chair" />
+          <img src="/images/image/chair3.png" alt="chair" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="images/image/chair4.png" alt="chair" />
+          <img src="/images/image/chair4.png" alt="chair" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="images/image/chair5.png" alt="chair" />
+          <img src="/images/image/chair5.png" alt="chair" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="images/image/chair6.png" alt="chair" />
+          <img src="/images/image/chair6.png" alt="chair" />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -57,27 +57,27 @@ const ProductSlider = ({product}) => {
       >
         <SwiperSlide>
           <div className="a">
-            <img src={product.image} alt="chair" />
+          <img src={`/${product.image}`} alt="chair" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="a">
-            <img src="images/image/chair3.png" alt="chair" />
+            <img src="/images/image/chair3.png" alt="chair" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="a">
-            <img src="images/image/chair4.png" alt="chair" />
+            <img src="/images/image/chair4.png" alt="chair" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="a">
-            <img src="images/image/chair5.png" alt="chair" />
+            <img src="/images/image/chair5.png" alt="chair" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="a">
-            <img src="images/image/chair6.png" alt="chair" />
+            <img src="/images/image/chair6.png" alt="chair" />
           </div>
         </SwiperSlide>
       </Swiper>

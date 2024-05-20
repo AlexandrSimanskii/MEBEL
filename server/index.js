@@ -16,7 +16,7 @@ mongoose
 const app = express();
 
 const PORT = process.env.PORT || 3004;
-const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://185.185.70.117";
+const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://193.222.62.100";
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);

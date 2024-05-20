@@ -23,7 +23,7 @@ const Context = (props) => {
 
   const getAllProducts = async () => {
     const products = await fetch(
-      "http://localhost:3004/api/productsDB/get?limit=6"
+      "/api/productsDB/get?limit=6"
     );
     let res = await products.json();
     setProducts(res);
