@@ -9,7 +9,7 @@
     "server": "node ../index.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "build": "vite build",
+    "build": "vite build --base=/my/public/path/",
     "preview": "vite preview"
   },
   "dependencies": {
