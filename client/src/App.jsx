@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense,  } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./style/main.scss";
 
@@ -19,7 +19,7 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 
 function App() {
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   return (
     <>
